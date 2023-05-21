@@ -1,0 +1,3 @@
+[submodule "rendering/BlenderToolbox"]
+	path = rendering/BlenderToolbox
+	url = https://github.com/HTDerekLiu/BlenderToolbox.git
