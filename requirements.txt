@@ -1,0 +1,16 @@
+nvdiffrast @ git+https://github.com/NVlabs/nvdiffrast/@fad71a4ad3dc8530a4eeaeb55a65b2e8c127d69d
+open3d==0.17.0
+opencv-python==4.7.0.72
+Pillow==9.5.0
+point-cloud-utils==0.29.3
+scikit-learn==1.2.2
+scipy==1.10.1
+tensorboardX==2.6
+torch==1.13.1
+torchvision==0.14.1
+tqdm==4.65.0
+trimesh==3.21.5
+xatlas==0.0.7
+blobfile==2.0.2
+ninja==1.11.1
+PyMCubes==0.1.4
