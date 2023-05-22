@@ -1,12 +1,12 @@
-GPU_ID=0
+GPU_ID=1
 PROJ_DIR=$(pwd)
 BLENDER_PATH=blender
 
 # data
 cd $PROJ_DIR/data
-OBJ_PATH=$PROJ_DIR/data/indhouse/mesh/industry_house.obj
-DATA_PATH=$PROJ_DIR/data/indhouse/indhouse.npz
-python mesh_sampler.py -s $OBJ_PATH -d $DATA_PATH --n_surf 5000000
+OBJ_PATH=$PROJ_DIR/data/towerruins/mesh/model.obj
+DATA_PATH=$PROJ_DIR/data/towerruins/towerruins.npz
+python mesh_sampler.py -s $OBJ_PATH -d $DATA_PATH --n_surf 5000000 --watertight
 echo $DATA_PATH
 
 cd $PROJ_DIR/rendering

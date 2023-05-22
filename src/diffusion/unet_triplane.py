@@ -490,6 +490,14 @@ class TriplaneUNetModelSmall(nn.Module):
                 h_triplane = hs.pop()
             else:
                 h_triplane_pop = hs.pop()
+                h_triplane = list(h_triplane)
+                if h_triplane[0].shape[2:] != h_triplane_pop[0].shape[2:]:
+                    h_triplane[0] = F.interpolate(h_triplane[0], size=h_triplane_pop[0].shape[2:], mode='bilinear', align_corners=False)
+                if h_triplane[1].shape[2:] != h_triplane_pop[1].shape[2:]:
+                    h_triplane[1] = F.interpolate(h_triplane[1], size=h_triplane_pop[1].shape[2:], mode='bilinear', align_corners=False)
+                if h_triplane[2].shape[2:] != h_triplane_pop[2].shape[2:]:
+                    h_triplane[2] = F.interpolate(h_triplane[2], size=h_triplane_pop[2].shape[2:], mode='bilinear', align_corners=False)
+
                 h_triplane = (th.cat([h_triplane[0], h_triplane_pop[0]], dim=1),
                               th.cat([h_triplane[1], h_triplane_pop[1]], dim=1),
                               th.cat([h_triplane[2], h_triplane_pop[2]], dim=1))

@@ -4,6 +4,10 @@ Please visit our [project page]() for more details.
 
 
 ## Installation
+Clone this repo
+```bash
+git clone --recursive https://github.com/Sin3DM/Sin3DM.git
+```
 Install required packages via pip
 ```bash
 pip install -r requirements.txt
@@ -15,13 +19,13 @@ TBA.
 
 
 ## Get started
-We provide a script on one example for data generation, training, sampling and evaluation. 
+We provide a script on one example for data pre-processing, training, sampling and evaluation. Change the `BLENDER_PATH` in it if needed.
 ```bash
 bash scripts/run_single.sh
 ```
 
 
-#### Data generation
+#### Data pre-processing
 We create training data by sampling points from a textured mesh:
 ```bash
 cd data
