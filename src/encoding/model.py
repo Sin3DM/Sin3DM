@@ -361,8 +361,8 @@ class ShapeAutoEncoder(object):
 
     @torch.no_grad()
     def decode_texmesh(self, save_dir, triplane_feat, reso, n_faces=10000, n_surf_pc=-1, texture_reso=2048, only_largest_cc=True, 
-                       save_highres_mesh=False, save_voxel=True, mtl_path=None):
-        from .utils3d import sdfgrid_to_mesh, xatlas_uvmap, save_mesh_with_tex, mesh_decimation, save_mesh_with_pbr, read_metarial_params_from_mtl
+                       save_highres_mesh=False, save_voxel=True, mtl_path=None, file_format="obj"):
+        from .utils3d import sdfgrid_to_mesh, xatlas_uvmap, save_mesh_with_tex, save_mesh_with_tex_to_glb, mesh_decimation, save_mesh_with_pbr, read_metarial_params_from_mtl
         import point_cloud_utils as pcu
         import cv2
 
@@ -429,19 +429,33 @@ class ShapeAutoEncoder(object):
         tex_img = tex_img.clip(0, 255).astype(np.uint8)
         tex_img = tex_img[::-1] # flip
 
-        save_path = os.path.join(save_dir, "object.obj")
         if self.data_type == "sdftex":
-            mtl_str = read_metarial_params_from_mtl(mtl_path) if mtl_path is not None else None
-            save_mesh_with_tex(
-                save_path,
-                v.detach().cpu().numpy(),
-                uvs.detach().cpu().numpy(),
-                f.detach().cpu().numpy(),
-                mesh_tex_idx.detach().cpu().numpy(),
-                tex_img, 
-                mtl_str=mtl_str,
-                Kd=self.Kd, Ka=self.Ka, Ks=self.Ks, Ns=self.Ns
-            )
+            if file_format == "obj":
+                save_path = os.path.join(save_dir, "object.obj")
+                mtl_str = read_metarial_params_from_mtl(mtl_path) if mtl_path is not None else None
+                save_mesh_with_tex(
+                    save_path,
+                    v.detach().cpu().numpy(),
+                    uvs.detach().cpu().numpy(),
+                    f.detach().cpu().numpy(),
+                    mesh_tex_idx.detach().cpu().numpy(),
+                    tex_img, 
+                    mtl_str=mtl_str,
+                    Kd=self.Kd, Ka=self.Ka, Ks=self.Ks, Ns=self.Ns
+                )
+            elif file_format == "glb":
+                save_path = os.path.join(save_dir, "object.glb")
+                save_mesh_with_tex_to_glb(
+                    save_path.replace(".obj", ".glb"),
+                    v.detach().cpu().numpy(),
+                    uvs.detach().cpu().numpy(),
+                    f.detach().cpu().numpy(),
+                    mesh_tex_idx.detach().cpu().numpy(),
+                    tex_img
+                )
+            else:
+                raise NotImplementedError
+
         elif self.data_type == "sdfpbr":
             albedo_img = tex_img[..., :3]
             metallic_img = tex_img[..., 3]

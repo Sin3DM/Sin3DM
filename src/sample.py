@@ -68,11 +68,14 @@ def decode(args, paths):
             ae_model.decode_voxel(save_dir, feat_maps, args.reso)
         else:
             if args.copy_mtl:
-                mtl_path = glob.glob(os.path.join(os.path.dirname(args.data_path), "mesh/*.mtl"))[0]
+                try:
+                    mtl_path = glob.glob(os.path.join(os.path.dirname(args.data_path), "mesh/*.mtl"))[0]
+                except:
+                    mtl_path = None
             else:
                 mtl_path = None
             ae_model.decode_texmesh(save_dir, feat_maps, args.reso, n_faces=args.n_faces, texture_reso=args.texreso,
-                                    save_highres_mesh=False, n_surf_pc=-1, mtl_path=mtl_path)
+                                    save_highres_mesh=False, n_surf_pc=-1, mtl_path=mtl_path, file_format=args.file_format)
 
 
 if __name__ == "__main__":

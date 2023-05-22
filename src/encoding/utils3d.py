@@ -88,6 +88,52 @@ def save_mesh_with_tex(fname, pointnp_px3, tcoords_px2, facenp_fx3, facetex_fx3,
     return
 
 
+def save_mesh_with_tex_to_glb(fname, pointnp_px3, tcoords_px2, facenp_fx3, facetex_fx3, tex_img):
+    assert fname.endswith('.glb')
+    v_new = []
+    vt_new = []
+    f_new = []
+    v2idx_dict = {}
+    for i in range(len(facenp_fx3)):
+        f1 = facenp_fx3[i]
+        f2 = facetex_fx3[i]
+        f_new_idx = []
+        for j in range(3):
+            v_unique_id = str(f1[j]) + '_' + str(f2[j])
+            if v_unique_id not in v2idx_dict.keys():
+                v2idx_dict[v_unique_id] = len(v_new)
+                v_new.append(pointnp_px3[f1[j]])
+                vt_new.append(tcoords_px2[f2[j]])
+            f_new_idx.append(v2idx_dict[v_unique_id])
+        f_new.append(f_new_idx)
+    
+    v_new = np.array(v_new)
+    vt_new = np.array(vt_new)
+    f_new = np.array(f_new)
+    # ft_new = f_new.copy()
+
+    visual = trimesh.visual.texture.TextureVisuals(
+        uv=vt_new,
+        image=PIL.Image.fromarray(tex_img),
+    )
+
+    mesh = trimesh.Trimesh(
+        vertices=v_new,
+        faces=f_new,
+        visual=visual,
+    )
+
+    def tree_postprocessor(tree):
+        # FIXME: hardcode the material
+        tree["materials"][0]["pbrMetallicRoughness"]["baseColorFactor"] = [1.0, 1.0, 1.0, 1.0]
+        tree["materials"][0]["pbrMetallicRoughness"]["metallicFactor"] = 0.0
+        tree["materials"][0]["pbrMetallicRoughness"]["roughnessFactor"] = 1.0
+        tree["materials"][0]["doubleSided"] = True
+
+    with open(fname, 'wb') as f:
+        mesh.export(file_obj=f, file_type='glb', tree_postprocessor=tree_postprocessor)
+
+
 def save_mesh_with_pbr(fname, pointnp_px3, tcoords_px2, facenp_fx3, facetex_fx3, 
                        albedo_img, metallic_img, roughness_img, normal_img,
                        Ks=[0.5, 0.5, 0.5], Ke=[0, 0, 0], Ns=250, Ni=1.5, d=1.0, illum=2,

@@ -63,12 +63,13 @@ def add_sampling_options(parser):
     group.add_argument("--timestep_respacing", type=str, default="", help="timestep respacing")
     group.add_argument("--app", type=str, default="generate", help="")
     
-    group.add_argument('--reso', type=int, default=256, help="decoding volume resolution")
-    group.add_argument('--n_faces', type=int, default=10000, help="number of simplified mesh faces")
-    group.add_argument('--texreso', type=int, default=2048, help="texture resolution")
-    group.add_argument('--vox', action='store_true', help="")
-    # set default True
-    group.add_argument('--copy_mtl', type=str2bool, default=True, help="copy mtl file")
+    group.add_argument("--reso", type=int, default=256, help="decoding volume resolution")
+    group.add_argument("--n_faces", type=int, default=10000, help="number of simplified mesh faces")
+    group.add_argument("--texreso", type=int, default=2048, help="texture resolution")
+    group.add_argument("--vox", action='store_true', help="")
+
+    group.add_argument("--copy_mtl", type=str2bool, default=True, help="copy mtl file")
+    group.add_argument("--file_format", type=str, default="obj", choices=["obj", "glb"], help="file format")
 
 
 def diffusion_defaults():
