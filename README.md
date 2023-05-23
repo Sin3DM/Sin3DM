@@ -1,6 +1,8 @@
-# Sin3DM
+# Sin3DM: Learning a Diffusion Model from a Single 3D Textured Shape
 
-Please visit our [project page]() for more details.
+Please visit our [project page](https://Sin3DM.github.io) for more details.
+
+<img src='teaser.jpg'>
 
 
 ## Installation
@@ -8,17 +10,23 @@ Clone this repo
 ```bash
 git clone --recursive https://github.com/Sin3DM/Sin3DM.git
 ```
-Install required packages via pip
+Install required packages
 ```bash
+conda create -n sin3dm python=3.10
+conda activate sin3dm
 pip install -r requirements.txt
 ```
 
 
-## Data & Pretrained models
-TBA.
+## Quick start
+Download pretrained models from [here]() and put under `src/checkpoints`. Then run our gradio demo for generation (~3GB VRAM):
+```bash
+cd src
+python app.py
+```
 
 
-## Get started
+## Usage
 We provide a script on one example for data pre-processing, training, sampling and evaluation. Change the `BLENDER_PATH` in it if needed.
 ```bash
 bash scripts/run_single.sh

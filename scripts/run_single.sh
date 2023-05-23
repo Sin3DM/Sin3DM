@@ -9,7 +9,7 @@ DATA_PATH=$PROJ_DIR/data/towerruins/towerruins.npz
 python mesh_sampler.py -s $OBJ_PATH -d $DATA_PATH --n_surf 5000000 --watertight
 echo $DATA_PATH
 
-cd $PROJ_DIR/rendering
+cd $PROJ_DIR/rendering # render images for evaluation
 $BLENDER_PATH -b -P blender_render_multiview.py -- -s $OBJ_PATH -o $(dirname $DATA_PATH)/renderings -g $GPU_ID
 
 
