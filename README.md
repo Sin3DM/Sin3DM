@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 
 ## Quick start
-Download pretrained models from [here]() and put under `src/checkpoints`. Then run our gradio demo for generation (~3GB VRAM):
+Download pretrained models from [here](https://drive.google.com/drive/folders/1YEf4oqXnq1Lr89EROt_6Z2mvr4Ldt3CF?usp=sharing) and put under `src/checkpoints`. Then run our gradio demo for generation (~3GB VRAM):
 ```bash
 cd src
 python app.py
