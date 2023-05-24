@@ -33,7 +33,7 @@ bash scripts/run_single.sh
 ```
 
 
-#### Data pre-processing
+### Data pre-processing
 We create training data by sampling points from a textured mesh:
 ```bash
 cd data
@@ -42,7 +42,7 @@ python mesh_sampler.py -s {OBJ_PATH} -d {SAVE_NPZ_PATH} --n_surf 5000000
 Add `--watertight` flag if the mesh is already watertight. Use `mesh_sampler_pbr.py` for pbr models.
 
 
-#### Training
+### Training
 Train the autoencoder and then the diffusion model:
 ```bash
 cd src
@@ -50,7 +50,7 @@ python train.py --tag {EXP_DIR} --data_path {NPZ_PATH} --gpu_id 0
 ```
 
 
-#### Sampling
+### Sampling
 Generate new textured meshes:
 ```bash
 cd src
@@ -61,7 +61,7 @@ python sample.py --tag {EXP_DIR} --n_samples 10 --n_faces 50000 --output results
 - By default, it uses DDPM sampling with 1000 steps. Add `--use_ddim --timestep_respacing '100'` for DDIM sampling.
 
 
-#### Evaluation
+### Evaluation
 Geometry quality (SSFID) relies on a pretrained 3D shape classifier. Please download it from [here](https://drive.google.com/file/d/1HjnDudrXsNY4CYhIGhH4Q0r3-NBnBaiC/view?usp=sharing) and put `Clsshapenet_128.pth` under `evaluation` folder.
 First, render each model from 8 views:
 ```bash
@@ -78,7 +78,7 @@ python eval_full.py -s {RESULT_DIR} -r {NPZ_DATA_DIR} -g 0
 `NPZ_DATA_DIR` is the parent folder of the data path `NPZ_PATH`.
 
 
-#### Rendering
+### Rendering
 See `rendering` for the rendering scripts that are used to produce paper figures.
 
 
