@@ -1,4 +1,4 @@
-GPU_ID=1
+GPU_ID=0
 PROJ_DIR=$(pwd)
 BLENDER_PATH=blender
 
