@@ -1,9 +1,11 @@
 # Sin3DM: Learning a Diffusion Model from a Single 3D Textured Shape
 
-Please visit our [project page](https://Sin3DM.github.io) for more details.
-
 <img src='teaser.jpg'>
 
+> **[Sin3DM: Learning a Diffusion Model from a Single 3D Textured Shape](https://Sin3DM.github.io)**  
+> [Rundi Wu](https://www.cs.columbia.edu/~rundi/), [Ruoshi Liu](https://ruoshiliu.github.io/), [Carl Vondrick](http://www.cs.columbia.edu/~vondrick/), [Changxi Zheng](http://www.cs.columbia.edu/~cxz/)  
+> Columbia University  
+> ArXiv 2023
 
 ## Installation
 Clone this repo
@@ -84,3 +86,15 @@ See `rendering` for the rendering scripts that are used to produce paper figures
 
 ## Acknowledgments
 The code is partly based on [guided-diffusion](https://github.com/openai/guided-diffusion), [BlenderToolBox](https://github.com/HTDerekLiu/BlenderToolbox) and [SinGAN](https://github.com/tamarott/SinGAN). We thank the authors of these works for sharing their code.
+
+
+## Citation
+```
+@article{wu2023sin3dm,
+  title={Sin3DM: Learning a Diffusion Model from a Single 3D Textured Shape},
+  author={Wu, Rundi and Liu, Ruoshi and Vondrick, Carl and Zheng, Changxi},
+  journal={arXiv preprint arXiv:2305.15399},
+  year={2023}
+}
+}
+```
