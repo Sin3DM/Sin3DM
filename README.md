@@ -96,5 +96,4 @@ The code is partly based on [guided-diffusion](https://github.com/openai/guided-
   journal={arXiv preprint arXiv:2305.15399},
   year={2023}
 }
-}
 ```
