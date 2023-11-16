@@ -94,7 +94,7 @@ def get_activations(files, model, batch_size=1, dims=64,
         mask = mask.transpose((0, 3, 1, 2))
         images = images.transpose((0, 3, 1, 2))
         #images = images[0,:,:,:]
-        images /= 255
+        # images /= 255
 
         mask = torch.from_numpy(mask).type(torch.FloatTensor).to(device)
         batch = torch.from_numpy(images).type(torch.FloatTensor).to(device)
