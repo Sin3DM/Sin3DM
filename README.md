@@ -5,7 +5,7 @@
 > **[Sin3DM: Learning a Diffusion Model from a Single 3D Textured Shape](https://Sin3DM.github.io)**  
 > [Rundi Wu](https://www.cs.columbia.edu/~rundi/), [Ruoshi Liu](https://ruoshiliu.github.io/), [Carl Vondrick](http://www.cs.columbia.edu/~vondrick/), [Changxi Zheng](http://www.cs.columbia.edu/~cxz/)  
 > Columbia University  
-> ArXiv 2023
+> ICLR 2024
 
 ## Installation
 Clone this repo
